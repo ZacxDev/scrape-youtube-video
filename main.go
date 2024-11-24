@@ -1,9 +1,9 @@
 package ytdownloader
 
 import (
+	"errors"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -79,7 +79,7 @@ func (d *VideoDownloader) Download(videoURL string, options DownloadOptions, pro
 	}
 
 	if format.MimeType == "" {
-		log.Fatal("no mp4 format found")
+		return "", errors.New("no mp4 format found")
 	}
 
 	fmt.Printf("got format %+v\n", format)
